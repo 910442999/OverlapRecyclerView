@@ -1,4 +1,4 @@
-package com.yc.overlaprecyclerview.adapter;
+package com.yc.overlaprecyclerview.overlap.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -36,7 +36,7 @@ public class OverlapAdapter extends RecyclerView.Adapter<OverlapAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return 10;
+        return 2;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

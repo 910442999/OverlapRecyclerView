@@ -16,6 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".overlap.OverlapActivity"></activity>
+        <activity android:name=".ladder.VerticalSampleActivity"></activity>
     </application>
 
 </manifest>
