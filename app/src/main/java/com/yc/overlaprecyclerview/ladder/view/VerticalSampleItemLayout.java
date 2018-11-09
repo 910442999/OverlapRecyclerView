@@ -18,7 +18,7 @@ import com.yc.overlaprecyclerview.R;
  */
 
 public class VerticalSampleItemLayout extends FrameLayout {
-    private CardView addV;
+    private CardView removeV;
     private CardView contentV;
 
     public VerticalSampleItemLayout(@NonNull Context context) {
@@ -37,19 +37,19 @@ public class VerticalSampleItemLayout extends FrameLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
         contentV = (CardView) findViewById(R.id.content);
-        addV = (CardView) findViewById(R.id.add);
-        if (contentV == null || addV == null) {
+        removeV = (CardView) findViewById(R.id.remove);
+        if (contentV == null || removeV == null) {
             throw new IllegalArgumentException("Not find view with resourceId R.id.content||R.id.add by VerticalSampleItemLayout");
         }
     }
 
     public void setElevation(float elevation) {
         ViewCompat.setElevation(contentV, elevation);
-        ViewCompat.setElevation(addV, elevation);
+        ViewCompat.setElevation(removeV, elevation);
     }
 
     public void setStrokeColor(int color) {
         contentV.setCardBackgroundColor(color);
-        addV.setCardBackgroundColor(color);
+        removeV.setCardBackgroundColor(color);
     }
 }

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.yc.overlaprecyclerview.echelon.EchelonActivity;
 import com.yc.overlaprecyclerview.ladder.VerticalSampleActivity;
 import com.yc.overlaprecyclerview.overlap.OverlapActivity;
 
@@ -27,6 +28,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView textView2 = findViewById(R.id.text2);
         textView2.setOnClickListener(this);
 
+        TextView textView3 = findViewById(R.id.text3);
+        textView3.setOnClickListener(this);
+
 
     }
 
@@ -40,6 +44,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.text2:
                 mIntent = new Intent(this, VerticalSampleActivity.class);
+                startActivity(mIntent);
+                break;
+
+            case R.id.text3:
+                mIntent = new Intent(this, EchelonActivity.class);
                 startActivity(mIntent);
                 break;
 
