@@ -1,11 +1,14 @@
 package com.yc.overlaprecyclerview.echelon;
 
+import android.app.Application;
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.provider.FontRequest;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +21,7 @@ import com.yc.overlaprecyclerview.echelon.bean.EchelonBean;
 import com.yc.overlaprecyclerview.echelon.view.EchelonLayoutManager;
 
 import java.util.ArrayList;
+import java.util.IllegalFormatCodePointException;
 import java.util.List;
 
 /**
@@ -63,6 +67,72 @@ public class EchelonActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mMyAdapter = new MyAdapter();
         mRecyclerView.setAdapter(mMyAdapter);
+
+        removeItem();
+    }
+
+    private void removeItem() {
+        ItemTouchHelper touchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                //滑动时的一些操作
+                return true;
+            }
+
+            /**
+             * 该方法返回true时，表示如果用户触摸并左右滑动了View，那么可以执行滑动删除操作，即可以调用到onSwiped()方法。默认是返回true。
+             * @return
+             */
+            @Override
+            public boolean isItemViewSwipeEnabled() {
+                return super.isItemViewSwipeEnabled();
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                // 处理滑动事件回调
+                final int pos = viewHolder.getAdapterPosition();
+                EchelonBean echelonBean = mList.get(pos);
+                Log.e("tag", "当前滑动的位置 ：" + pos);
+                mList.remove(pos);
+                //                    mMyAdapter.notifyItemRemoved(pos);
+                mMyAdapter.notifyDataSetChanged();
+
+                if (mList.size() == 0) {
+                    EchelonActivity.this.finish();
+                }
+
+                // 判断方向，进行不同的操作
+                if (direction == ItemTouchHelper.RIGHT) {
+
+
+                } else {
+
+
+                }
+
+            }
+
+            //处理动画
+            @Override
+            public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+                if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+                    //设置滑动条目是视图跟随手指滑动 ， 否则条目静止状态
+                    viewHolder.itemView.setTranslationX(dX);
+                } else {
+                    super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+                }
+            }
+            //滑动事件完成时回调
+            //在这里可以实现撤销操作
+
+            //是否长按进行拖拽
+            @Override
+            public boolean isLongPressDragEnabled() {
+                return true;
+            }
+        });
+        touchHelper.attachToRecyclerView(mRecyclerView);
     }
 
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
@@ -93,8 +163,9 @@ public class EchelonActivity extends AppCompatActivity {
                     echelonBean.setIcon(icons[mList.size() % 4]);
                     mList.add(echelonBean);
                     //                    mRecyclerView.scrollToPosition(0);
+                    //                    mRecyclerView.smoothScrollToPosition(0);
                     notifyDataSetChanged();
-                    mRecyclerView.smoothScrollToPosition(0);
+
                 }
             });
             holder.tv_remove.setOnClickListener(new View.OnClickListener() {
