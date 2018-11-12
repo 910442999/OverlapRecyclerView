@@ -1,4 +1,4 @@
-package com.yc.overlaprecyclerview.adapter;
+package com.yc.overlaprecyclerview.overlap.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

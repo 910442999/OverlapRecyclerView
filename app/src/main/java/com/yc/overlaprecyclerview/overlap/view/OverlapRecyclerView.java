@@ -1,4 +1,4 @@
-package com.yc.overlaprecyclerview.view;
+package com.yc.overlaprecyclerview.overlap.view;
 
 import android.content.Context;
 import android.graphics.Rect;
