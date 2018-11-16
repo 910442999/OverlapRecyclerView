@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".overlap.OverlapActivity" />
         <activity android:name=".ladder.VerticalSampleActivity" />
-        <activity android:name=".echelon.EchelonActivity"></activity>
+        <activity android:name=".echelon.EchelonActivity" />
+        <activity android:name=".morefragment.Main2Activity"></activity>
     </application>
 
 </manifest>

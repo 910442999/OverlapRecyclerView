@@ -36,5 +36,15 @@
         android:padding="10dp"
         android:text="自定义EchelonLayoutManager" />
 
+    <TextView
+        android:id="@+id/text4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#bbbbbb"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="动态加载和移除fragment" />
+
 
 </LinearLayout>
