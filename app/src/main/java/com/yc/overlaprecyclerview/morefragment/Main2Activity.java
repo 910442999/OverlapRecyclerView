@@ -58,7 +58,7 @@ public class Main2Activity extends AppCompatActivity {
         mViewPager = (verticalViewPager) findViewById(R.id.mainviewpage);
         fragPagerAdapter = new fragAdapter(this, getSupportFragmentManager());
         mViewPager.setAdapter(fragPagerAdapter);
-        mViewPager.setOffscreenPageLimit(3);
+        mViewPager.setOffscreenPageLimit(1);
 
         EventBus.getDefault().register(this);
         mainSimpleOnGestureListener = new mainActivitySimpleOnGestureListener();
